@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Pelanggan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .sidebar {
+      height: 100vh;
+      background-color: #343a40;
+      color: white;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background-color: #495057;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-2 d-none d-md-block sidebar p-3">
+      <h4>Kapten Barber</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Layanan</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Reservasi Baru</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Riwayat</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Profil</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="col-md-10 ms-sm-auto px-md-4">
+      <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Selamat Datang, Halim</h2>
+        <div>
+          <button class="btn btn-outline-secondary">🔔 Notifikasi</button>
+          <button class="btn btn-outline-dark">🌙 Mode Gelap</button>
+        </div>
+      </div>
+
+      <!-- Ringkasan -->
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5>Reservasi Aktif</h5>
+              <p class="display-6">2</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5>Reservasi Terdekat</h5>
+              <p>05 Mei 2025, 14:00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5>Total Reservasi</h5>
+              <p class="display-6">10</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabel Layanan -->
+      <h4 class="mb-3">Layanan Tersedia</h4>
+      <table class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Nama Layanan</th>
+            <th>Durasi</th>
+            <th>Harga</th>
+            <th>Deskripsi</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Haircut Premium</td>
+            <td>45 menit</td>
+            <td>Rp 50.000</td>
+            <td>Potong rambut + cuci</td>
+            <td><button class="btn btn-sm btn-primary">Reservasi</button></td>
+          </tr>
+          <tr>
+            <td>Haircut & Massage</td>
+            <td>60 menit</td>
+            <td>Rp 70.000</td>
+            <td>Potong + pijat kepala</td>
+            <td><button class="btn btn-sm btn-primary">Reservasi</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Riwayat -->
+      <h4 class="mt-5">Riwayat Pemesanan</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Layanan</th>
+            <th>Jam</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>02 Mei 2025</td>
+            <td>Haircut Premium</td>
+            <td>09:00</td>
+            <td><span class="badge bg-success">Selesai</span></td>
+            <td><button class="btn btn-sm btn-secondary">Detail</button></td>
+          </tr>
+          <tr>
+            <td>01 Mei 2025</td>
+            <td>Shaving Only</td>
+            <td>13:00</td>
+            <td><span class="badge bg-danger">Dibatalkan</span></td>
+            <td><button class="btn btn-sm btn-secondary">Detail</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </main>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

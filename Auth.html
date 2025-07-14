@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captain Barber - Authentication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#64748b',
+                        accent: '#f59e0b',
+                        success: '#10b981',
+                        danger: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iNzUiIGN5PSI3NSIgcj0iNzUiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+
+    <div class="relative min-h-screen flex items-center justify-center p-4">
+        <!-- Auth Container -->
+        <div class="w-full max-w-md">
+            <!-- Logo & Brand -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-accent rounded-2xl shadow-lg mb-4">
+                    <i class="fas fa-cut text-white text-2xl"></i>
+                </div>
+                <h1 class="text-3xl font-bold text-white mb-2">Captain Barber</h1>
+                <p class="text-slate-300">Professional Barbershop Management</p>
+            </div>
+            
+            <!-- Auth Forms Container -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 overflow-hidden">
+                <!-- Tab Navigation -->
+                <div class="flex bg-black/20">
+                    <button id="loginTab" class="flex-1 py-4 px-6 text-center font-medium text-white border-b-2 border-accent transition-all duration-300">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Masuk
+                    </button>
+                    <button id="registerTab" class="flex-1 py-4 px-6 text-center font-medium text-slate-300 border-b-2 border-transparent hover:text-white transition-all duration-300">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        Daftar
+                    </button>
+                </div>
+                
+                <!-- Login Form -->
+                <div id="loginForm" class="p-8">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                <i class="fas fa-envelope mr-2"></i>
+                                Email atau Username
+                            </label>
+                            <input type="text" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300" placeholder="Masukkan email atau username">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                <i class="fas fa-lock mr-2"></i>
+                                Password
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="loginPassword" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300" placeholder="Masukkan password">
+                                <button type="button" onclick="togglePassword('loginPassword', this)" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-300 hover:text-white transition-colors">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="w-4 h-4 text-accent bg-white/10 border-none rounded focus:ring-accent focus:ring-2">
+                                <span class="ml-2 text-sm text-slate-300">Ingat saya</span>
+                            </label>
+                            <a href="#" class="text-sm text-accent hover:text-accent/80 transition-colors">
+                                Lupa password?
+                            </a>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-accent to-amber-500 text-white font-medium py-3 px-4 rounded-lg hover:from-amber-500 hover:to-accent transform hover:scale-105 transition-all duration-300 shadow-lg">
+                            <i class="fas fa-sign-in-alt mr-2"></i>
+                            Masuk
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-white/20"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-transparent text-slate-300">Atau masuk dengan</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 grid grid-cols-2 gap-3">
+                            <button class="flex items-center justify-center px-4 py-2 border border-white/20 rounded-lg text-white hover:bg-white/10 transition-all duration-300">
+                                <i class="fab fa-google mr-2"></i>
+                                Google
+                            </button>
+                            <button class="flex items-center justify-center px-4 py-2 border border-white/20 rounded-lg text-white hover:bg-white/10 transition-all duration-300">
+                                <i class="fab fa-facebook mr-2"></i>
+                                Facebook
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Register Form -->
+                <div id="registerForm" class="p-8 hidden">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-white mb-2">
+                                    <i class="fas fa-user mr-2"></i>
+                                    Nama Depan
+                                </label>
+                                <input type="text" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300" placeholder="Nama depan">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-white mb-2">
+                                    <i class="fas fa-user mr-2"></i>
+                                    Nama Belakang
+                                </label>
+                                <input type="text" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300" placeholder="Nama belakang">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                <i class="fas fa-envelope mr-2"></i>
+                                Email
+                            </label>
+                            <input type="email" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300" placeholder="Masukkan email">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                <i class="fas fa-phone mr-2"></i>
+                                Nomor Telepon
+                            </label>
+                            <input type="tel" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300" placeholder="Masukkan nomor telepon">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                <i class="fas fa-user-tag mr-2"></i>
+                                Daftar Sebagai
+                            </label>
+                            <select class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300">
+                                <option value="customer" class="bg-slate-800">Pelanggan</option>
+                                <option value="barber" class="bg-slate-800">Kapster</option>
+                                <option value="admin" class="bg-slate-800">Admin</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                <i class="fas fa-lock mr-2"></i>
+                                Password
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="registerPassword" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300" placeholder="Masukkan password">
+                                <button type="button" onclick="togglePassword('registerPassword', this)" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-300 hover:text-white transition-colors">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="mt-2">
+                                <div id="passwordStrength" class="h-2 bg-white/10 rounded-full overflow-hidden">
+                                    <div id="strengthBar" class="h-full transition-all duration-300"></div>
+                                </div>
+                                <p id="strengthText" class="text-xs text-slate-300 mt-1">Password harus minimal 8 karakter</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                <i class="fas fa-lock mr-2"></i>
+                                Konfirmasi Password
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="confirmPassword" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300" placeholder="Konfirmasi password">
+                                <button type="button" onclick="togglePassword('confirmPassword', this)" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-300 hover:text-white transition-colors">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <input type="checkbox" class="w-4 h-4 text-accent bg-white/10 border-none rounded focus:ring-accent focus:ring-2 mt-1">
+                            <label class="ml-2 text-sm text-slate-300">
+                                Saya menyetujui <a href="#" class="text-accent hover:text-accent/80">Syarat & Ketentuan</a> dan <a href="#" class="text-accent hover:text-accent/80">Kebijakan Privasi</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-blue-600 text-white font-medium py-3 px-4 rounded-lg hover:from-blue-600 hover:to-primary transform hover:scale-105 transition-all duration-300 shadow-lg">
+                            <i class="fas fa-user-plus mr-2"></i>
+                            Daftar Sekarang
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-white/20"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-transparent text-slate-300">Atau daftar dengan</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 grid grid-cols-2 gap-3">
+                            <button class="flex items-center justify-center px-4 py-2 border border-white/20 rounded-lg text-white hover:bg-white/10 transition-all duration-300">
+                                <i class="fab fa-google mr-2"></i>
+                                Google
+                            </button>
+                            <button class="flex items-center justify-center px-4 py-2 border border-white/20 rounded-lg text-white hover:bg-white/10 transition-all duration-300">
+                                <i class="fab fa-facebook mr-2"></i>
+                                Facebook
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="text-center mt-8">
+                <p class="text-slate-400 text-sm">
+                    © 2025 Captain Barber. All rights reserved.
+                </p>
+                <div class="flex justify-center space-x-4 mt-2">
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors text-sm">Bantuan</a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors text-sm">Kontak</a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors text-sm">Tentang</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 mx-4 max-w-sm w-full transform scale-95 transition-transform duration-300">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-success rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Berhasil!</h3>
+                <p class="text-gray-600 mb-6" id="successMessage">Akun berhasil dibuat. Silakan cek email untuk verifikasi.</p>
+                <button onclick="closeModal()" class="w-full bg-success text-white font-medium py-3 px-4 rounded-lg hover:bg-success/90 transition-colors">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+
+        loginTab.addEventListener('click', () => {
+            switchTab('login');
+        });
+
+        registerTab.addEventListener('click', () => {
+            switchTab('register');
+        });
+
+        function switchTab(tab) {
+            if (tab === 'login') {
+                loginTab.classList.add('text-white', 'border-accent');
+                loginTab.classList.remove('text-slate-300', 'border-transparent');
+                registerTab.classList.add('text-slate-300', 'border-transparent');
+                registerTab.classList.remove('text-white', 'border-accent');
+                
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+            } else {
+                registerTab.classList.add('text-white', 'border-accent');
+                registerTab.classList.remove('text-slate-300', 'border-transparent');
+                loginTab.classList.add('text-slate-300', 'border-transparent');
+                loginTab.classList.remove('text-white', 'border-accent');
+                
+                registerForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+            }
+        }
+
+        // Password visibility toggle
+        function togglePassword(inputId, button) {
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Password strength checker
+        const registerPassword = document.getElementById('registerPassword');
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthText = document.getElementById('strengthText');
+
+        if (registerPassword) {
+            registerPassword.addEventListener('input', function(e) {
+                const password = e.target.value;
+                const strength = calculatePasswordStrength(password);
+                updatePasswordStrength(strength);
+            });
+        }
+
+        function calculatePasswordStrength(password) {
+            let score = 0;
+            if (password.length >= 8) score++;
+            if (/[a-z]/.test(password)) score++;
+            if (/[A-Z]/.test(password)) score++;
+            if (/[0-9]/.test(password)) score++;
+            if (/[^A-Za-z0-9]/.test(password)) score++;
+            return score;
+        }
+
+        function updatePasswordStrength(strength) {
+            const colors = ['', '#ef4444', '#f59e0b', '#eab308', '#84cc16', '#10b981'];
+            const texts = ['', 'Sangat Lemah', 'Lemah', 'Sedang', 'Kuat', 'Sangat Kuat'];
+            const widths = ['0%', '20%', '40%', '60%', '80%', '100%'];
+
+            strengthBar.style.backgroundColor = colors[strength];
+            strengthBar.style.width = widths[strength];
+            strengthText.textContent = texts[strength] || 'Password harus minimal 8 karakter';
+        }
+
+        // Form submissions
+        document.querySelector('#loginForm form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate login
+            showSuccessModal('Login berhasil! Mengarahkan ke dashboard...');
+            setTimeout(() => {
+                // Redirect logic here
+                console.log('Redirecting to dashboard...');
+            }, 2000);
+        });
+
+        document.querySelector('#registerForm form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate registration
+            showSuccessModal('Pendaftaran berhasil! Silakan cek email untuk verifikasi akun.');
+        });
+
+        function showSuccessModal(message) {
+            document.getElementById('successMessage').textContent = message;
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.querySelector('.bg-white').classList.add('scale-100');
+                modal.querySelector('.bg-white').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.querySelector('.bg-white').classList.add('scale-95');
+            modal.querySelector('.bg-white').classList.remove('scale-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Floating animations for background elements
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.className = 'absolute w-2 h-2 bg-white/10 rounded-full animate-pulse';
+            element.style.left = Math.random() * 100 + '%';
+            element.style.top = Math.random() * 100 + '%';
+            element.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 4000);
+        }
+
+        // Create floating elements periodically
+        setInterval(createFloatingElement, 2000);
+    </script>
+</body>
+</html>
