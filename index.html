@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,49 +9,129 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #1f2937 0%, #374151 100%); }
-        .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
-        .hover-scale { transition: transform 0.3s ease; }
-        .hover-scale:hover { transform: scale(1.05); }
-        .animate-fade-in { animation: fadeIn 0.6s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-bounce { animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        .mobile-nav { 
-            position: fixed; 
-            top: 0; 
-            left: -300px; 
-            width: 280px; 
-            height: 100vh; 
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
             background: #1f2937;
             z-index: 1000;
             transition: left 0.4s ease;
-            box-shadow: 0 0 25px rgba(0,0,0,0.5);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
         }
-        .mobile-nav.active { left: 0; }
+
+        .mobile-nav.active {
+            left: 0;
+        }
+
         .mobile-nav-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 999;
             display: none;
         }
-        .mobile-nav-overlay.active { display: block; }
-        .time-slot.selected { background: linear-gradient(to right, #f59e0b, #f97316) !important; color: #000 !important; }
+
+        .mobile-nav-overlay.active {
+            display: block;
+        }
+
+        .time-slot.selected {
+            background: linear-gradient(to right, #f59e0b, #f97316) !important;
+            color: #000 !important;
+        }
+
         @media (max-width: 768px) {
-            .time-slot { font-size: 0.875rem; padding: 0.5rem; }
-            #notification { right: 1rem; top: 1rem; max-width: calc(100vw - 2rem); }
+            .time-slot {
+                font-size: 0.875rem;
+                padding: 0.5rem;
+            }
+
+            #notification {
+                right: 1rem;
+                top: 1rem;
+                max-width: calc(100vw - 2rem);
+            }
         }
     </style>
 </head>
+
 <body class="bg-gray-900 text-white">
+    <!-- Modal Demo -->
+    <div id="demoModal" class="fixed inset-0 bg-black/60 z-[9999] flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 mx-4 max-w-sm w-full shadow-2xl text-center animate-fade-in">
+            <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-info text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Demo Saja</h3>
+            <p class="text-gray-600 mb-6">Halaman ini hanya untuk demo UI.<br>Semua data dan fitur tidak benar-benar
+                berjalan.</p>
+            <button onclick="closeDemoModal()"
+                class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-medium py-3 px-4 rounded-lg hover:from-orange-500 hover:to-yellow-400 transition-colors">Saya
+                Mengerti</button>
+        </div>
+    </div>
     <!-- Mobile Navigation Overlay -->
     <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-    
+
     <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
         <div class="p-6 flex justify-between items-center border-b border-gray-700">
@@ -63,10 +144,14 @@
             </button>
         </div>
         <div class="p-6 flex flex-col space-y-6 mt-4">
-            <a href="#home" class="py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeMobileNav()">Beranda</a>
-            <a href="#services" class="py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeMobileNav()">Layanan</a>
-            <a href="#booking" class="py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeMobileNav()">Booking</a>
-            <a href="#contact" class="py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeMobileNav()">Kontak</a>
+            <a href="#home" class="py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors"
+                onclick="closeMobileNav()">Beranda</a>
+            <a href="#services" class="py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors"
+                onclick="closeMobileNav()">Layanan</a>
+            <a href="#booking" class="py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors"
+                onclick="closeMobileNav()">Booking</a>
+            <a href="#contact" class="py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors"
+                onclick="closeMobileNav()">Kontak</a>
         </div>
     </div>
 
@@ -95,17 +180,20 @@
     <section id="home" class="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="container mx-auto px-6 text-center relative z-10 animate-fade-in">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+            <h1
+                class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
                 STYLE MEETS PRECISION
             </h1>
             <p class="text-xl md:text-2xl mb-8 text-gray-300">
                 Pengalaman cukur rambut premium dengan sentuhan modern
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="scrollToSection('booking')" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-8 py-4 rounded-full font-semibold hover-scale shadow-xl">
+                <button onclick="scrollToSection('booking')"
+                    class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-8 py-4 rounded-full font-semibold hover-scale shadow-xl">
                     <i class="fas fa-calendar-check mr-2"></i>Book Sekarang
                 </button>
-                <button onclick="scrollToSection('services')" class="glass-effect border border-yellow-400 px-8 py-4 rounded-full font-semibold hover-scale">
+                <button onclick="scrollToSection('services')"
+                    class="glass-effect border border-yellow-400 px-8 py-4 rounded-full font-semibold hover-scale">
                     <i class="fas fa-eye mr-2"></i>Lihat Layanan
                 </button>
             </div>
@@ -123,18 +211,20 @@
                 <div class="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-6"></div>
                 <p class="text-xl text-gray-300">Pelayanan terbaik dengan standar internasional</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service Cards -->
                 <div class="glass-effect rounded-2xl p-8 hover-scale border border-gray-700">
                     <div class="text-center">
-                        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div
+                            class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-cut text-2xl text-black"></i>
                         </div>
                         <h3 class="text-2xl font-semibold mb-4">Classic Haircut</h3>
                         <p class="text-gray-300 mb-6">Potongan rambut klasik dengan teknik profesional</p>
                         <div class="text-3xl font-bold text-yellow-400 mb-4">Rp 50.000</div>
-                        <button onclick="selectService('Classic Haircut', 50000)" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
+                        <button onclick="selectService('Classic Haircut', 50000)"
+                            class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
                             Pilih Layanan
                         </button>
                     </div>
@@ -142,13 +232,15 @@
 
                 <div class="glass-effect rounded-2xl p-8 hover-scale border border-gray-700">
                     <div class="text-center">
-                        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div
+                            class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-magic text-2xl text-black"></i>
                         </div>
                         <h3 class="text-2xl font-semibold mb-4">Premium Styling</h3>
                         <p class="text-gray-300 mb-6">Styling modern dengan produk premium</p>
                         <div class="text-3xl font-bold text-yellow-400 mb-4">Rp 75.000</div>
-                        <button onclick="selectService('Premium Styling', 75000)" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
+                        <button onclick="selectService('Premium Styling', 75000)"
+                            class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
                             Pilih Layanan
                         </button>
                     </div>
@@ -156,13 +248,15 @@
 
                 <div class="glass-effect rounded-2xl p-8 hover-scale border border-gray-700">
                     <div class="text-center">
-                        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div
+                            class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-spa text-2xl text-black"></i>
                         </div>
                         <h3 class="text-2xl font-semibold mb-4">Beard Grooming</h3>
                         <p class="text-gray-300 mb-6">Perawatan jenggot dan kumis profesional</p>
                         <div class="text-3xl font-bold text-yellow-400 mb-4">Rp 40.000</div>
-                        <button onclick="selectService('Beard Grooming', 40000)" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
+                        <button onclick="selectService('Beard Grooming', 40000)"
+                            class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
                             Pilih Layanan
                         </button>
                     </div>
@@ -170,13 +264,15 @@
 
                 <div class="glass-effect rounded-2xl p-8 hover-scale border border-gray-700">
                     <div class="text-center">
-                        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div
+                            class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-shower text-2xl text-black"></i>
                         </div>
                         <h3 class="text-2xl font-semibold mb-4">Hair Wash</h3>
                         <p class="text-gray-300 mb-6">Keramas dengan shampo berkualitas tinggi</p>
                         <div class="text-3xl font-bold text-yellow-400 mb-4">Rp 25.000</div>
-                        <button onclick="selectService('Hair Wash', 25000)" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
+                        <button onclick="selectService('Hair Wash', 25000)"
+                            class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
                             Pilih Layanan
                         </button>
                     </div>
@@ -184,13 +280,15 @@
 
                 <div class="glass-effect rounded-2xl p-8 hover-scale border border-gray-700">
                     <div class="text-center">
-                        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div
+                            class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-fire text-2xl text-black"></i>
                         </div>
                         <h3 class="text-2xl font-semibold mb-4">Hot Towel Treatment</h3>
                         <p class="text-gray-300 mb-6">Relaksasi dengan handuk hangat aromaterapi</p>
                         <div class="text-3xl font-bold text-yellow-400 mb-4">Rp 35.000</div>
-                        <button onclick="selectService('Hot Towel Treatment', 35000)" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
+                        <button onclick="selectService('Hot Towel Treatment', 35000)"
+                            class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
                             Pilih Layanan
                         </button>
                     </div>
@@ -198,13 +296,15 @@
 
                 <div class="glass-effect rounded-2xl p-8 hover-scale border border-gray-700">
                     <div class="text-center">
-                        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div
+                            class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-crown text-2xl text-black"></i>
                         </div>
                         <h3 class="text-2xl font-semibold mb-4">Royal Package</h3>
                         <p class="text-gray-300 mb-6">Paket lengkap: Cut + Style + Beard + Treatment</p>
                         <div class="text-3xl font-bold text-yellow-400 mb-4">Rp 150.000</div>
-                        <button onclick="selectService('Royal Package', 150000)" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
+                        <button onclick="selectService('Royal Package', 150000)"
+                            class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
                             Pilih Layanan
                         </button>
                     </div>
@@ -228,17 +328,23 @@
                         <div class="flex justify-center mb-8">
                             <div class="flex items-center space-x-4">
                                 <div class="flex items-center">
-                                    <div id="step1-indicator" class="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-bold">1</div>
+                                    <div id="step1-indicator"
+                                        class="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-bold">
+                                        1</div>
                                     <span class="ml-2 font-semibold">Info Personal</span>
                                 </div>
                                 <div class="w-12 h-1 bg-gray-600"></div>
                                 <div class="flex items-center">
-                                    <div id="step2-indicator" class="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold">2</div>
+                                    <div id="step2-indicator"
+                                        class="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold">
+                                        2</div>
                                     <span class="ml-2 font-semibold text-gray-400">Pilih Waktu</span>
                                 </div>
                                 <div class="w-12 h-1 bg-gray-600"></div>
                                 <div class="flex items-center">
-                                    <div id="step3-indicator" class="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold">3</div>
+                                    <div id="step3-indicator"
+                                        class="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold">
+                                        3</div>
                                     <span class="ml-2 font-semibold text-gray-400">Konfirmasi</span>
                                 </div>
                             </div>
@@ -249,20 +355,26 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-semibold mb-2">Nama Lengkap</label>
-                                    <input type="text" id="customerName" class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors" placeholder="Mas Ibrahim Halim">
+                                    <input type="text" id="customerName"
+                                        class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors"
+                                        placeholder="Mas Ibrahim Halim">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold mb-2">Nomor WhatsApp</label>
-                                    <input type="tel" id="customerPhone" class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors" placeholder="081234567890" pattern="^08\d{9,12}$" required>
+                                    <input type="tel" id="customerPhone"
+                                        class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors"
+                                        placeholder="081234567890" pattern="^08\d{9,12}$" required>
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold mb-2">Layanan Dipilih</label>
-                                <div id="selectedService" class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 text-gray-400">
+                                <div id="selectedService"
+                                    class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 text-gray-400">
                                     Pilih layanan dari menu di atas
                                 </div>
                             </div>
-                            <button type="button" onclick="nextStep(1)" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-4 rounded-xl font-semibold hover-scale">
+                            <button type="button" onclick="nextStep(1)"
+                                class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-4 rounded-xl font-semibold hover-scale">
                                 Lanjut ke Pilih Waktu <i class="fas fa-arrow-right ml-2"></i>
                             </button>
                         </div>
@@ -272,11 +384,13 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-semibold mb-2">Pilih Tanggal</label>
-                                    <input type="date" id="bookingDate" class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                                    <input type="date" id="bookingDate"
+                                        class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold mb-2">Pilih Barber</label>
-                                    <select id="selectedBarber" class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                                    <select id="selectedBarber"
+                                        class="w-full bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
                                         <option value="">Pilih Barber</option>
                                         <option value="Andi Pratama">Andi Pratama - Senior</option>
                                         <option value="Budi Santoso">Budi Santoso - Expert</option>
@@ -291,10 +405,12 @@
                                 </div>
                             </div>
                             <div class="flex space-x-4">
-                                <button type="button" onclick="prevStep(2)" class="flex-1 glass-effect border border-yellow-400 py-4 rounded-xl font-semibold hover-scale">
+                                <button type="button" onclick="prevStep(2)"
+                                    class="flex-1 glass-effect border border-yellow-400 py-4 rounded-xl font-semibold hover-scale">
                                     <i class="fas fa-arrow-left mr-2"></i>Kembali
                                 </button>
-                                <button type="button" onclick="nextStep(2)" class="flex-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-4 rounded-xl font-semibold hover-scale">
+                                <button type="button" onclick="nextStep(2)"
+                                    class="flex-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-4 rounded-xl font-semibold hover-scale">
                                     Lanjut ke Konfirmasi <i class="fas fa-arrow-right ml-2"></i>
                                 </button>
                             </div>
@@ -309,10 +425,12 @@
                                 </div>
                             </div>
                             <div class="flex space-x-4">
-                                <button type="button" onclick="prevStep(3)" class="flex-1 glass-effect border border-yellow-400 py-4 rounded-xl font-semibold hover-scale">
+                                <button type="button" onclick="prevStep(3)"
+                                    class="flex-1 glass-effect border border-yellow-400 py-4 rounded-xl font-semibold hover-scale">
                                     <i class="fas fa-arrow-left mr-2"></i>Kembali
                                 </button>
-                                <button type="submit" class="flex-1 bg-gradient-to-r from-green-400 to-green-600 text-white py-4 rounded-xl font-semibold hover-scale">
+                                <button type="submit"
+                                    class="flex-1 bg-gradient-to-r from-green-400 to-green-600 text-white py-4 rounded-xl font-semibold hover-scale">
                                     <i class="fas fa-check mr-2"></i>Konfirmasi Booking
                                 </button>
                             </div>
@@ -330,26 +448,29 @@
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Hubungi Kami</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-6"></div>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center glass-effect rounded-2xl p-8 hover-scale">
-                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div
+                        class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-map-marker-alt text-2xl text-black"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-4">Alamat</h3>
                     <p class="text-gray-300">Jl. Raya Darmo No. 123<br>Surabaya, Jawa Timur</p>
                 </div>
-                
+
                 <div class="text-center glass-effect rounded-2xl p-8 hover-scale">
-                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div
+                        class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-phone text-2xl text-black"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-4">Telepon</h3>
                     <p class="text-gray-300">+62 812-3456-7890</p>
                 </div>
-                
+
                 <div class="text-center glass-effect rounded-2xl p-8 hover-scale">
-                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div
+                        class="bg-gradient-to-r from-yellow-400 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-clock text-2xl text-black"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-4">Jam Buka</h3>
@@ -389,8 +510,10 @@
                     <i class="fas fa-check text-2xl text-white"></i>
                 </div>
                 <h3 class="text-2xl font-bold mb-4">Booking Berhasil!</h3>
-                <p class="text-gray-300 mb-6">Terima kasih! Booking Anda telah dikonfirmasi. Kami akan menghubungi Anda via WhatsApp untuk konfirmasi lebih lanjut.</p>
-                <button onclick="closeModal()" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
+                <p class="text-gray-300 mb-6">Terima kasih! Booking Anda telah dikonfirmasi. Kami akan menghubungi Anda
+                    via WhatsApp untuk konfirmasi lebih lanjut.</p>
+                <button onclick="closeModal()"
+                    class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 rounded-full font-semibold hover-scale">
                     Tutup
                 </button>
             </div>
@@ -398,7 +521,8 @@
     </div>
 
     <!-- Notification -->
-    <div id="notification" class="fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div id="notification"
+        class="fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out">
         <div class="flex items-center space-x-3">
             <i id="notificationIcon" class="fas fa-info-circle text-xl"></i>
             <span id="notificationText" class="font-medium"></span>
@@ -406,31 +530,36 @@
     </div>
 
     <script>
+        // Modal Demo Otomatis
+        function closeDemoModal() {
+            document.getElementById('demoModal').style.display = 'none';
+        }
+
         // Booking state
         let selectedServiceData = null;
         let selectedTimeSlot = null;
         let currentStep = 1;
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             setMinDate();
             generateTimeSlots();
-            
+
             // Setup mobile navigation
             document.getElementById('openMobileNav').addEventListener('click', openMobileNav);
             document.getElementById('closeMobileNav').addEventListener('click', closeMobileNav);
             document.getElementById('mobileNavOverlay').addEventListener('click', closeMobileNav);
-            
+
             // Form submission
-            document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            document.getElementById('bookingForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 submitBooking();
             });
         });
 
         function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ 
-                behavior: 'smooth' 
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
             });
         }
 
@@ -457,7 +586,7 @@
             // Change text color to white to indicate selection
             document.getElementById('selectedService').classList.remove('text-gray-400');
             document.getElementById('selectedService').classList.add('text-white');
-            
+
             scrollToSection('booking');
         }
 
@@ -478,7 +607,7 @@
                 '16:00', '16:30', '17:00', '17:30', '18:00', '18:30',
                 '19:00', '19:30', '20:00', '20:30'
             ];
-            
+
             timeSlotsContainer.innerHTML = '';
             timeSlots.forEach(time => {
                 const button = document.createElement('button');
@@ -496,7 +625,7 @@
                 btn.classList.remove('selected', 'bg-yellow-400', 'text-black');
                 btn.classList.add('bg-gray-700', 'text-white');
             });
-            
+
             // Add selection to clicked time slot
             button.classList.add('selected', 'bg-yellow-400', 'text-black');
             button.classList.remove('bg-gray-700', 'text-white');
@@ -507,42 +636,42 @@
             if (step === 1) {
                 const name = document.getElementById('customerName').value;
                 const phone = document.getElementById('customerPhone').value;
-                
+
                 if (!name) {
                     showNotification('Mohon masukkan nama lengkap Anda.', 'error');
                     return;
                 }
-                
+
                 if (!phone || !/^08\d{9,12}$/.test(phone)) {
                     showNotification('Mohon masukkan nomor WhatsApp yang valid (contoh: 081234567890).', 'error');
                     return;
                 }
-                
+
                 if (!selectedServiceData) {
                     showNotification('Mohon pilih layanan terlebih dahulu.', 'error');
                     return;
                 }
-                
+
                 showStep(2);
             } else if (step === 2) {
                 const date = document.getElementById('bookingDate').value;
                 const barber = document.getElementById('selectedBarber').value;
-                
+
                 if (!date) {
                     showNotification('Mohon pilih tanggal booking.', 'error');
                     return;
                 }
-                
+
                 if (!barber) {
                     showNotification('Mohon pilih barber Anda.', 'error');
                     return;
                 }
-                
+
                 if (!selectedTimeSlot) {
                     showNotification('Mohon pilih waktu booking.', 'error');
                     return;
                 }
-                
+
                 updateConfirmation();
                 showStep(3);
             }
@@ -560,13 +689,13 @@
                 document.getElementById(`step${i}-indicator`).classList.add('bg-gray-600');
                 document.getElementById(`step${i}-indicator`).parentElement.querySelector('span').classList.add('text-gray-400');
             }
-            
+
             // Show current step
             document.getElementById(`step${step}`).classList.remove('hidden');
             document.getElementById(`step${step}-indicator`).classList.remove('bg-gray-600');
             document.getElementById(`step${step}-indicator`).classList.add('bg-gradient-to-r', 'from-yellow-400', 'to-orange-500');
             document.getElementById(`step${step}-indicator`).parentElement.querySelector('span').classList.remove('text-gray-400');
-            
+
             currentStep = step;
         }
 
@@ -581,7 +710,7 @@
             const phone = document.getElementById('customerPhone').value;
             const date = document.getElementById('bookingDate').value;
             const barber = document.getElementById('selectedBarber').value;
-            
+
             const confirmationHTML = `
                 <div class="space-y-4">
                     <div class="flex justify-between py-2 border-b border-gray-600">
@@ -614,35 +743,35 @@
                     </div>
                 </div>
             `;
-            
+
             document.getElementById('bookingConfirmation').innerHTML = confirmationHTML;
         }
 
         function submitBooking() {
             // Show success notification
             showNotification('Booking berhasil dikonfirmasi! Kami akan menghubungi Anda via WhatsApp.', 'success');
-            
+
             // Show success modal
             document.getElementById('successModal').classList.remove('hidden');
-            
+
             // Reset form
             setTimeout(() => {
                 document.getElementById('bookingForm').reset();
                 selectedServiceData = null;
                 selectedTimeSlot = null;
-                
+
                 // Reset selected service display
                 const selectedServiceElement = document.getElementById('selectedService');
                 selectedServiceElement.innerHTML = 'Pilih layanan dari menu di atas';
                 selectedServiceElement.classList.remove('text-white');
                 selectedServiceElement.classList.add('text-gray-400');
-                
+
                 // Reset time slot selections
                 document.querySelectorAll('.time-slot').forEach(btn => {
                     btn.classList.remove('selected', 'bg-yellow-400', 'text-black');
                     btn.classList.add('bg-gray-700', 'text-white');
                 });
-                
+
                 showStep(1);
             }, 2000);
         }
@@ -655,10 +784,10 @@
             const notification = document.getElementById('notification');
             const icon = document.getElementById('notificationIcon');
             const text = document.getElementById('notificationText');
-            
+
             // Set content
             text.textContent = message;
-            
+
             // Set style based on type
             if (type === 'error') {
                 notification.className = 'fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg bg-red-500 text-white transform translate-x-full transition-transform duration-300 ease-in-out';
@@ -670,12 +799,12 @@
                 notification.className = 'fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg bg-blue-500 text-white transform translate-x-full transition-transform duration-300 ease-in-out';
                 icon.className = 'fas fa-info-circle text-xl';
             }
-            
+
             // Show notification
             setTimeout(() => {
                 notification.classList.remove('translate-x-full');
             }, 100);
-            
+
             // Hide notification after 3 seconds
             setTimeout(() => {
                 notification.classList.add('translate-x-full');
@@ -683,4 +812,5 @@
         }
     </script>
 </body>
+
 </html>

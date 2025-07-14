@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,12 +30,28 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-50 font-sans">
+    <!-- Modal Demo -->
+    <div id="demoModal" class="fixed inset-0 bg-black/60 z-[9999] flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 mx-4 max-w-sm w-full shadow-2xl text-center animate-fade-in">
+            <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-info text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Demo Saja</h3>
+            <p class="text-gray-600 mb-6">Halaman ini hanya untuk demo UI.<br>Semua data dan fitur tidak benar-benar
+                berjalan.</p>
+            <button onclick="closeDemoModal()"
+                class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-medium py-3 px-4 rounded-lg hover:from-orange-500 hover:to-yellow-400 transition-colors">Saya
+                Mengerti</button>
+        </div>
+    </div>
     <!-- Mobile Menu Overlay -->
     <div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
-    
+
     <!-- Sidebar -->
-    <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-slate-900 to-slate-800 text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-50">
+    <div id="sidebar"
+        class="fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-slate-900 to-slate-800 text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-50">
         <div class="p-6 border-b border-slate-700">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
@@ -46,7 +63,7 @@
                 </div>
             </div>
         </div>
-        
+
         <nav class="p-4 space-y-2">
             <a href="#" class="flex items-center space-x-3 p-3 rounded-lg bg-primary text-white">
                 <i class="fas fa-home w-5"></i>
@@ -73,7 +90,7 @@
                 <span>Pengaturan</span>
             </a>
         </nav>
-        
+
         <div class="absolute bottom-4 left-4 right-4">
             <div class="bg-slate-700 rounded-lg p-4">
                 <div class="flex items-center space-x-3">
@@ -88,7 +105,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Main Content -->
     <div class="lg:ml-64 min-h-screen">
         <!-- Header -->
@@ -103,7 +120,7 @@
                         <p class="text-gray-600">Selamat datang kembali, Ahmad!</p>
                     </div>
                 </div>
-                
+
                 <div class="flex items-center space-x-4">
                     <div class="hidden md:block text-right">
                         <p class="text-sm text-gray-600">Selasa, 10 Juni 2025</p>
@@ -112,13 +129,14 @@
                     <div class="relative">
                         <button class="p-2 rounded-lg hover:bg-gray-100 relative">
                             <i class="fas fa-bell text-xl text-gray-600"></i>
-                            <span class="absolute -top-1 -right-1 w-5 h-5 bg-danger rounded-full text-white text-xs flex items-center justify-center">3</span>
+                            <span
+                                class="absolute -top-1 -right-1 w-5 h-5 bg-danger rounded-full text-white text-xs flex items-center justify-center">3</span>
                         </button>
                     </div>
                 </div>
             </div>
         </header>
-        
+
         <!-- Dashboard Content -->
         <main class="p-4 space-y-6">
             <div id="dashboard-section">
@@ -139,7 +157,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-success">
                         <div class="flex items-center justify-between">
                             <div>
@@ -155,7 +173,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-accent">
                         <div class="flex items-center justify-between">
                             <div>
@@ -171,7 +189,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-purple-500">
                         <div class="flex items-center justify-between">
                             <div>
@@ -188,30 +206,34 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Quick Actions -->
                 <div class="bg-white rounded-xl shadow-sm p-6">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Aksi Cepat</h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <button class="flex flex-col items-center p-4 rounded-lg border-2 border-dashed border-gray-200 hover:border-primary hover:bg-primary/5 transition-colors">
+                        <button
+                            class="flex flex-col items-center p-4 rounded-lg border-2 border-dashed border-gray-200 hover:border-primary hover:bg-primary/5 transition-colors">
                             <i class="fas fa-plus text-2xl text-primary mb-2"></i>
                             <span class="text-sm font-medium text-gray-700">Tambah Booking</span>
                         </button>
-                        <button class="flex flex-col items-center p-4 rounded-lg border-2 border-dashed border-gray-200 hover:border-success hover:bg-success/5 transition-colors">
+                        <button
+                            class="flex flex-col items-center p-4 rounded-lg border-2 border-dashed border-gray-200 hover:border-success hover:bg-success/5 transition-colors">
                             <i class="fas fa-check text-2xl text-success mb-2"></i>
                             <span class="text-sm font-medium text-gray-700">Selesai Layanan</span>
                         </button>
-                        <button class="flex flex-col items-center p-4 rounded-lg border-2 border-dashed border-gray-200 hover:border-accent hover:bg-accent/5 transition-colors">
+                        <button
+                            class="flex flex-col items-center p-4 rounded-lg border-2 border-dashed border-gray-200 hover:border-accent hover:bg-accent/5 transition-colors">
                             <i class="fas fa-clock text-2xl text-accent mb-2"></i>
                             <span class="text-sm font-medium text-gray-700">Istirahat</span>
                         </button>
-                        <button class="flex flex-col items-center p-4 rounded-lg border-2 border-dashed border-gray-200 hover:border-purple-500 hover:bg-purple-50 transition-colors">
+                        <button
+                            class="flex flex-col items-center p-4 rounded-lg border-2 border-dashed border-gray-200 hover:border-purple-500 hover:bg-purple-50 transition-colors">
                             <i class="fas fa-chart-line text-2xl text-purple-500 mb-2"></i>
                             <span class="text-sm font-medium text-gray-700">Lihat Laporan</span>
                         </button>
                     </div>
                 </div>
-                
+
                 <!-- Charts and Schedule Row -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <!-- Weekly Performance Chart -->
@@ -227,7 +249,7 @@
                             <canvas id="weeklyChart"></canvas>
                         </div>
                     </div>
-                    
+
                     <!-- Today's Schedule -->
                     <div class="bg-white rounded-xl shadow-sm p-6">
                         <div class="flex items-center justify-between mb-4">
@@ -245,7 +267,7 @@
                                     <p class="text-xs text-gray-500">Selesai</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-center p-3 bg-primary/10 rounded-lg border-l-4 border-primary">
                                 <div class="flex-1">
                                     <p class="font-medium text-gray-800">Ahmad Fauzi</p>
@@ -256,7 +278,7 @@
                                     <p class="text-xs text-gray-500">Sedang berlangsung</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-center p-3 bg-gray-50 rounded-lg border-l-4 border-gray-300">
                                 <div class="flex-1">
                                     <p class="font-medium text-gray-800">Rudi Hartono</p>
@@ -267,7 +289,7 @@
                                     <p class="text-xs text-gray-500">Menunggu</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-center p-3 bg-gray-50 rounded-lg border-l-4 border-gray-300">
                                 <div class="flex-1">
                                     <p class="font-medium text-gray-800">Doni Prasetyo</p>
@@ -281,7 +303,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Service Stats and Recent Activity -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <!-- Service Distribution -->
@@ -291,13 +313,14 @@
                             <canvas id="serviceChart"></canvas>
                         </div>
                     </div>
-                    
+
                     <!-- Recent Activity -->
                     <div class="bg-white rounded-xl shadow-sm p-6">
                         <h3 class="text-lg font-semibold text-gray-800 mb-4">Aktivitas Terkini</h3>
                         <div class="space-y-4">
                             <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-success rounded-full flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-success rounded-full flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-check text-white text-xs"></i>
                                 </div>
                                 <div class="flex-1">
@@ -306,9 +329,10 @@
                                     <p class="text-xs text-gray-400">5 menit yang lalu</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-star text-white text-xs"></i>
                                 </div>
                                 <div class="flex-1">
@@ -317,9 +341,10 @@
                                     <p class="text-xs text-gray-400">15 menit yang lalu</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-calendar text-white text-xs"></i>
                                 </div>
                                 <div class="flex-1">
@@ -352,30 +377,35 @@
             <!-- Performa Section -->
             <div id="performa-section" class="hidden">
                 <div class="bg-white rounded-xl shadow-sm p-6"></div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Performa</h3>
-                    <!-- Add your performance content here -->
-                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Performa</h3>
+                <!-- Add your performance content here -->
             </div>
+    </div>
 
-            <!-- Pendapatan Section -->
-            <div id="pendapatan-section" class="hidden">
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Pendapatan</h3>
-                    <!-- Add your income content here -->
-                </div>
-            </div>
+    <!-- Pendapatan Section -->
+    <div id="pendapatan-section" class="hidden">
+        <div class="bg-white rounded-xl shadow-sm p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Pendapatan</h3>
+            <!-- Add your income content here -->
+        </div>
+    </div>
 
-            <!-- Pengaturan Section -->
-            <div id="pengaturan-section" class="hidden">
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Pengaturan</h3>
-                    <!-- Add your settings content here -->
-                </div>
-            </div>
-        </main>
+    <!-- Pengaturan Section -->
+    <div id="pengaturan-section" class="hidden">
+        <div class="bg-white rounded-xl shadow-sm p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Pengaturan</h3>
+            <!-- Add your settings content here -->
+        </div>
+    </div>
+    </main>
     </div>
 
     <script>
+        // Modal Demo Otomatis
+        function closeDemoModal() {
+            document.getElementById('demoModal').style.display = 'none';
+        }
+
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const sidebar = document.getElementById('sidebar');
@@ -394,13 +424,13 @@
         // Update current time
         function updateTime() {
             const now = new Date();
-            const timeString = now.toLocaleTimeString('id-ID', { 
-                hour: '2-digit', 
+            const timeString = now.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
                 minute: '2-digit'
             });
             document.getElementById('currentTime').textContent = timeString;
         }
-        
+
         updateTime();
         setInterval(updateTime, 60000);
 
@@ -410,10 +440,10 @@
             document.querySelectorAll('main > div').forEach(section => {
                 section.classList.add('hidden');
             });
-            
+
             // Show selected section
             document.getElementById(sectionId + '-section').classList.remove('hidden');
-            
+
             // Update active menu item
             document.querySelectorAll('nav a').forEach(link => {
                 link.classList.remove('bg-primary');
@@ -522,35 +552,36 @@
                 }
             }
         });
-    
 
-    function updateDateTime() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString('id-ID', {
-            hour: '2-digit',
-            minute: '2-digit'
+
+        function updateDateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Initialize everything when document is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDateTime();
+            setupCharts();
+            showSection('dashboard');
+
+            // Update charts when window is resized
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    setupCharts();
+                }, 250);
+            });
+
+            // Set active class on the default section
+            document.querySelector('nav a[data-section="dashboard"]').classList.add('bg-primary');
         });
-        document.getElementById('currentTime').textContent = timeString;
-    }
-
-    // Initialize everything when document is ready
-    document.addEventListener('DOMContentLoaded', () => {
-        updateDateTime();
-        setupCharts();
-        showSection('dashboard');
-
-        // Update charts when window is resized
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                setupCharts();
-            }, 250);
-        });
-
-        // Set active class on the default section
-        document.querySelector('nav a[data-section="dashboard"]').classList.add('bg-primary');
-    });
-</script>
+    </script>
 </body>
+
 </html>

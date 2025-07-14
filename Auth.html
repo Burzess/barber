@@ -23,6 +23,17 @@
     </script>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
+    <!-- Modal Demo -->
+    <div id="demoModal" class="fixed inset-0 bg-black/60 z-[9999] flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 mx-4 max-w-sm w-full shadow-2xl text-center animate-fade-in">
+            <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-info text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Demo Saja</h3>
+            <p class="text-gray-600 mb-6">Halaman ini hanya untuk demo UI.<br>Semua data dan fitur tidak benar-benar berjalan.</p>
+            <button onclick="closeDemoModal()" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-medium py-3 px-4 rounded-lg hover:from-orange-500 hover:to-yellow-400 transition-colors">Saya Mengerti</button>
+        </div>
+    </div>
     <!-- Background Pattern -->
     <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iNzUiIGN5PSI3NSIgcj0iNzUiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
 
@@ -263,6 +274,11 @@
     </div>
 
     <script>
+        // Modal Demo Otomatis
+        function closeDemoModal() {
+            document.getElementById('demoModal').style.display = 'none';
+        }
+
         // Tab switching functionality
         const loginTab = document.getElementById('loginTab');
         const registerTab = document.getElementById('registerTab');
