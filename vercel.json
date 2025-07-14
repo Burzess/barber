@@ -14,7 +14,7 @@
         },
         {
             "source": "/profile",
-            "destination": "/dashboard-pelanggan.html"
+            "destination": "/dashboar-pelanggan.html"
         }
     ]
 }
