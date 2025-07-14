@@ -6,11 +6,11 @@
         },
         {
             "source": "/admin",
-            "destination": "/dashboard-admin.html"
+            "destination": "/admin.html"
         },
         {
             "source": "/kapster",
-            "destination": "/dashboard-kapster.html"
+            "destination": "/kapster.html"
         },
         {
             "source": "/profile",
