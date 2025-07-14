@@ -1,8 +1,20 @@
 {
     "rewrites": [
         {
-            "source": "/(.*)",
-            "destination": "/index.html"
+            "source": "/auth",
+            "destination": "/Auth.html"
+        },
+        {
+            "source": "/admin",
+            "destination": "/dashboard-admin.html"
+        },
+        {
+            "source": "/kapster",
+            "destination": "/dashboard-kapster.html"
+        },
+        {
+            "source": "/profile",
+            "destination": "/dashboard-pelanggan.html"
         }
     ]
 }
